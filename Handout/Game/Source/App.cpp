@@ -299,7 +299,7 @@ bool App::LoadGame()
 	}
 	else
 	{
-		LOG("Could not load game state from %s. Pugi error: %s", loadedGame.GetString(), result.description);
+		LOG("Could not load game state from %s. Pugi error: %s", loadedGame.GetString(), result.description());
 	}
 
 	loadGameRequested = false;
@@ -307,6 +307,7 @@ bool App::LoadGame()
 	return ret;
 }
 
+// L02: TODO 7: Implement the xml save method for current state
 bool App::SaveGame() const
 {
 	bool ret = true;
@@ -326,6 +327,9 @@ bool App::SaveGame() const
 		item = item->next;
 	}
 
+	if (ret == true) {
+		data.save_file(savedGame.GetString());
+	}
 	saveGameRequested = false;
 
 	return ret;
@@ -340,12 +344,5 @@ void App::LoadGameRequest(const char* fileName)
 void App::SaveGameRequest(const char* fileName) const 
 {
 	saveGameRequested = true;
-	if(savedGame != loadedGame) savedGame.create(fileName);
+	savedGame.create(fileName);
 }
-
-
-// L02: TODO 7: Implement the xml save method for current state
-
-
-
-
