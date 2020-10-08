@@ -46,6 +46,8 @@ public:
 	const char* GetOrganization() const;
 
     // L02: TODO 1: Create methods to request Load / Save
+	void LoadGameRequest(const char* fileName);
+	void SaveGameRequest(const char* fileName) const;
 
 private:
 
@@ -66,6 +68,9 @@ private:
 
 	// Call modules after each loop iteration
 	bool PostUpdate();
+
+	bool LoadGame();
+	bool SaveGame() const;
 
 public:
 
@@ -98,6 +103,11 @@ private:
 
 	// L02: TODO 1: Create required variables to request load / save and 
 	// the filename for save / load
+
+	mutable bool saveGameRequested;
+	bool loadGameRequested;
+	mutable SString savedGame;
+	SString loadedGame;
 };
 
 extern App* app;

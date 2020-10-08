@@ -45,6 +45,11 @@ bool Scene::PreUpdate()
 bool Scene::Update(float dt)
 {
     // L02: TODO 3: Request Load / Save when pressing L/S
+	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
+		app->SaveGameRequest("savegame.xml");
+
+	if (app->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+		app->LoadGameRequest("savegame.xml");
 
 	if(app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 		app->render->camera.y -= 1;
